@@ -14,7 +14,7 @@ This function implements the cross-validation (CV) method proposed in the MTAFT 
 
 This function implements the information criterion (IC) method proposed in the MTAFT article. It also combines the WBS or DP algorithm to determine the optimal number of thresholds.
 
-### `MTAFT_TSMCP`
+### `TSMCP`
 
 This function implements Li and Jin's (2018) method, which transforms the multi-threshold estimation problem into a variable selection problem.
 
