@@ -2,7 +2,7 @@
 % Please edit documentation in R/MTAFT_CV.R
 \name{MTAFT_CV}
 \alias{MTAFT_CV}
-\title{mAFT_CV: Cross-Validation for Multiple Thresholds Accelerated Failure Time Model}
+\title{MTAFT_CV: Cross-Validation for Multiple Thresholds Accelerated Failure Time Model}
 \usage{
 MTAFT_CV(
   Y,

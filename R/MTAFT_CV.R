@@ -283,7 +283,7 @@ COPS_AFT <- function(dataset,n,indices,algorithm, dist_min, ncps_max, wbs_ninter
 }
 
 
-#' mAFT_CV: Cross-Validation for Multiple Thresholds Accelerated Failure Time Model
+#' MTAFT_CV: Cross-Validation for Multiple Thresholds Accelerated Failure Time Model
 #'
 #' This function implements a cross-validation method for the multiple thresholds accelerated
 #' failure time (AFT) model using either the "WBS" (Wild Binary Segmentation) or "DP"
