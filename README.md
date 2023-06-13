@@ -96,9 +96,7 @@ result <- MTAFT_IC(Y, X, delta, Tq, c0, delta0, algorithm, dist_min, ncps_max)
 ### Applying the cross-validation method
 
 ``` r
-algorithm <- "
-
-WBS"
+algorithm <- "WBS"
 dist_min <- 50
 ncps_max <- 4
 
