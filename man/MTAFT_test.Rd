@@ -24,8 +24,15 @@ p-value result indicating the presence of threshold effect.
 This function performs a score-type test statistics for the presence of threshold effect in multi-threshold situations.
 }
 \examples{
+# Generate simulated data with 500 samples and normal error distribution
+dataset <- MTAFT_simdata(n = 500, err = "normal")
+Y <- dataset[, 1]
+delta <- dataset[, 2]
+Tq <- dataset[, 3]
+X <- dataset[, -c(1:3)]
+
 # Perform score-type test with 500 bootstraps
-pval <- mAFT_test(Y, X, Tq, delta, nboots = 500)
+pval <- MTAFT_test(Y, X, Tq, delta, nboots = 500)
 
 # Perform score-type test with 1000 bootstraps
 pval <- MTAFT_test(Y, X, Tq, delta, nboots = 1000)

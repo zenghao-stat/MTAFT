@@ -19,7 +19,7 @@ This function generates simulated data for the MTAFT (Multi-Threshold Accelerate
 }
 \examples{
 # Generate simulated data with 500 samples and normal error distribution
-dataset <- MAFT_simdata(n = 500, err = "normal")
+dataset <- MTAFT_simdata(n = 500, err = "normal")
 Y <- dataset[, 1]
 delta <- dataset[, 2]
 Tq <- dataset[, 3]

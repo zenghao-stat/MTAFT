@@ -820,6 +820,8 @@ cumcp <- function(Y, X, delta) {
 #'   \item{Xn}{weighted Xn by Kaplan-Meier weight.}
 #' }
 #'
+#' @export
+#'
 #' @references
 #' Li, Jialiang, and Baisuo Jin. 2018. “Multi-Threshold Accelerated Failure Time Model.”
 #' The Annals of Statistics 46 (6A): 2657–82.
@@ -828,24 +830,35 @@ cumcp <- function(Y, X, delta) {
 #' \code{\link{grpreg}}
 #'
 #' @examples
+#' library(grpreg)
 #' # Generate simulated data with 500 samples and normal error distribution
 #' dataset <- MTAFT_simdata(n = 500, err = "normal")
 #' Y <- dataset[, 1]
 #' delta <- dataset[, 2]
 #' Tq <- dataset[, 3]
 #' X <- dataset[, -c(1:3)]
+#' n1 = sum(delta)
+#' c=seq(0.5,1.5,0.1)
+#' m=ceiling(c*sqrt(n1))
+#' bicy= rep(NA,length(c))
+#' tsmc=NULL
+#' p = ncol(X)
+#' for(i in 1:length(c)){
+#'     tsm=try(TSMCP(Y,X,delta,c[i],penalty = "scad"),silent=TRUE)
+#'     if(is(tsm,"try-error")) next()
+#'     bicy[i]=log(n)*((length(tsm[[1]])+1)*(p+1))+n*log(tsm[[3]])
+#'     tsmc[[i]]=tsm
+#' }
 #'
-#' # Run TSMCP
-#' tsmcp_result <- TSMCP(log(Y), X, delta, 0.5)
-#' tsmcp_result$cp
-#' tsmcp_result$coef
-#' tsmcp_result$sigma
-#' tsmcp_result$residuals
-#' tsmcp_result$Yn
-#' tsmcp_result$Xn
-#'
-#' @export
+#' if((any(!is.na(bicy)))){
+#'     tsmcp=tsmc[[which(bicy==min(bicy))[1]]]
+#'     thre.LJ = Tq[tsmcp[[1]]]
+#'     thre.num.Lj = length(thre.LJ)
+#'     thre.LJ
+#'     thre.num.Lj
+#' }
 TSMCP <- function(Y, X, delta, c,penalty = "scad") {
+
   n <- length(Y)
   X <- as.matrix(X)
   p <- dim(X)[2]
@@ -859,8 +872,8 @@ TSMCP <- function(Y, X, delta, c,penalty = "scad") {
   de <- NULL
 
 
-  tt <- lmres(Y[1:id1[n1 - (q - 1) * m]], X[1:id1[n1 - (q - 1) * m],
-  ], delta[1:id1[n1 - (q - 1) * m]])
+  tt <- lmres(Y[1:id1[n1 - (q - 1) * m]], X[1:id1[n1 - (q - 1) * m],], delta[1:id1[n1 - (q - 1) * m]])
+
 
   y[[1]] <- tt[[3]]
   x[[1]] <- cbind(tt[[5]], tt[[4]])

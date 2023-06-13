@@ -3,4 +3,5 @@
 export(MTAFT_CV)
 export(MTAFT_IC)
 export(MTAFT_simdata)
+export(MTAFT_test)
 export(TSMCP)
