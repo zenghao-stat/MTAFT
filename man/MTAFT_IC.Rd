@@ -53,6 +53,7 @@ estimates, as well as the threshold estimates using either the "WBS" (Wild Binar
 or "DP" (Dynamic Programming) algorithm.
 }
 \examples{
+\donttest{
 # Generate simulated data with 500 samples and normal error distribution
 dataset <- MTAFT_simdata(n = 500, err = "normal")
 Y <- dataset[, 1]
@@ -65,7 +66,7 @@ mtaft_ic_result <- MTAFT_IC(Y, X, delta, Tq, algorithm = 'WBS')
 mtaft_ic_result$params
 mtaft_ic_result$thres
 mtaft_ic_result$IC_val
-
+}
 }
 \references{
 (Add relevant references here)

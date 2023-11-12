@@ -49,6 +49,7 @@ evaluating the cross-validation (CV) values.
 \examples{
 # Generate simulated data with 500 samples and normal error distribution
 dataset <- MTAFT_simdata(n = 500, err = "normal")
+\donttest{
 Y <- dataset[, 1]
 delta <- dataset[, 2]
 Tq <- dataset[, 3]
@@ -59,5 +60,5 @@ maft_cv_result <- MTAFT_CV(Y, X, delta, Tq, algorithm = "WBS")
 maft_cv_result$params
 maft_cv_result$thres
 maft_cv_result$CV_vals
-
+}
 }

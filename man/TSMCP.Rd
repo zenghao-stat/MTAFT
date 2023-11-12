@@ -35,6 +35,7 @@ so that a concave 2-norm group selection method can be applied using the `grpreg
 package in R, and then finalizes it via a refining method.
 }
 \examples{
+\donttest{
 library(grpreg)
 # Generate simulated data with 500 samples and normal error distribution
 dataset <- MTAFT_simdata(n = 500, err = "normal")
@@ -61,6 +62,7 @@ if((any(!is.na(bicy)))){
     thre.num.Lj = length(thre.LJ)
     thre.LJ
     thre.num.Lj
+}
 }
 }
 \references{

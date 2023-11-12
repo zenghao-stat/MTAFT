@@ -251,7 +251,7 @@ COPS_AFT <- function(dataset,n,indices,algorithm, dist_min, ncps_max, wbs_ninter
     res <- matrix(res[idx, ], sum(idx), ncps_max)
 
   } else if (algorithm == "WBS") {
-    set.seed(123)
+    # set.seed(123)
     lr_M <- matrix(NA, wbs_nintervals, 2)
     for (i in 1:wbs_nintervals) {
       lr_M[i, ] <- sort(sample(0:n_subdat, 2, replace = FALSE))
@@ -309,6 +309,7 @@ COPS_AFT <- function(dataset,n,indices,algorithm, dist_min, ncps_max, wbs_ninter
 #' @examples
 #' # Generate simulated data with 500 samples and normal error distribution
 #' dataset <- MTAFT_simdata(n = 500, err = "normal")
+#' \donttest{
 #' Y <- dataset[, 1]
 #' delta <- dataset[, 2]
 #' Tq <- dataset[, 3]
@@ -319,7 +320,7 @@ COPS_AFT <- function(dataset,n,indices,algorithm, dist_min, ncps_max, wbs_ninter
 #' maft_cv_result$params
 #' maft_cv_result$thres
 #' maft_cv_result$CV_vals
-#'
+#' }
 #' @export
 MTAFT_CV <- function(Y,
                     X,
@@ -368,7 +369,7 @@ MTAFT_CV <- function(Y,
     res_refit <- matrix(res_refit[idx, ], sum(idx), ncps)
 
   } else if (algorithm == "WBS") {
-    set.seed(123)
+    # set.seed(123)
     lr_M <- matrix(NA, wbs_nintervals, 2)
     for (i in 1:wbs_nintervals) {
       lr_M[i, ] <- sort(sample(0:n, 2, replace = FALSE))

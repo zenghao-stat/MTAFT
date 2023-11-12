@@ -27,6 +27,7 @@
 #' (Add relevant references here)
 #'
 #' @examples
+#' \donttest{
 #' # Generate simulated data with 500 samples and normal error distribution
 #' dataset <- MTAFT_simdata(n = 500, err = "normal")
 #' Y <- dataset[, 1]
@@ -39,7 +40,7 @@
 #' mtaft_ic_result$params
 #' mtaft_ic_result$thres
 #' mtaft_ic_result$IC_val
-#'
+#' }
 #' @export
 
 MTAFT_IC <- function(Y,
@@ -79,7 +80,7 @@ MTAFT_IC <- function(Y,
     idx <- !apply(is.na(res_est), 1, all)
     res_est <- matrix(res_est[idx, ], sum(idx), ncps_max)
   } else if (algorithm == "WBS") {
-    set.seed(123)
+    # set.seed(123)
     lr_M <- matrix(NA, wbs_nintervals, 2)
     for (i in 1:wbs_nintervals) {
       lr_M[i, ] <- sort(sample(0:n, 2, replace = FALSE))
@@ -114,7 +115,7 @@ MTAFT_IC <- function(Y,
     res_refit <- matrix(res_refit[idx, ], sum(idx), ncps)
 
   } else if (algorithm == "WBS") {
-    set.seed(123)
+    # set.seed(123)
     lr_M <- matrix(NA, wbs_nintervals, 2)
     for (i in 1:wbs_nintervals) {
       lr_M[i, ] <- sort(sample(0:n, 2, replace = FALSE))

@@ -12,6 +12,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' # Generate simulated data with 500 samples and normal error distribution
 #' dataset <- MTAFT_simdata(n = 500, err = "normal")
 #' Y <- dataset[, 1]
@@ -24,6 +25,7 @@
 #'
 #' # Perform score-type test with 1000 bootstraps
 #' pval <- MTAFT_test(Y, X, Tq, delta, nboots = 1000)
+#' }
 
 MTAFT_test <- function(Y,X,Tq,delta,nboots)
 {

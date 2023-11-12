@@ -26,7 +26,7 @@ plus <- function(x,y, method = c("lasso", "mc+", "scad", "general"), m=2, gamma,
     if (p<= 1) data.dim.error <- TRUE
   }
   if (data.dim.error == TRUE){
-    cat("Data dimention error.", "\n")
+    warning("Data dimention error.", "\n")
     return(list(data.dim.error = TRUE))
   }
   ## standardize x
@@ -52,7 +52,6 @@ plus <- function(x,y, method = c("lasso", "mc+", "scad", "general"), m=2, gamma,
   else if (m==3) method <- "SCAD"
   else method <- "PLUS"
   if (monitor == TRUE) {
-    #cat("\n")
     cat("Sequence of", method, "moves:", "\n","\n")
   }
   if (m<4) { # provide default penalty for lasso, MCP and SCAD
@@ -208,19 +207,19 @@ print.plus <- function(x, print.moves = 20, ...) {
 predict.plus <- function(object,lam,newx, ...) {
   if (missing(newx)) {
     flag <- FALSE
-    cat("Warning message: ")
-    cat("no newx argument; newy not produced", "\n")
+    warning("Warning message: ")
+    warning("no newx argument; newy not produced", "\n")
   }
   else flag <- TRUE
   if (missing(lam)) {
     lam <- sort(object$lam.path, decreasing=TRUE)
-    cat("Warning message: ")
-    cat("no lam argument; object$lam.path used", "\n")
+    warning("Warning message: ")
+    warning("no lam argument; object$lam.path used", "\n")
   }
   else if (max(lam) < min(object$lam.path)) {
     lam <- sort(object$lam.path, decreasing=TRUE)
-    cat("Warning message: ")
-    cat("lam not reached by the plus path; object$lam.path used", "\n")
+    warning("Warning message: ")
+    warning("lam not reached by the plus path; object$lam.path used", "\n")
   }
   #cat("\n")
   tmp <- plus.hit.points(lam,object$lam.path)
@@ -256,13 +255,13 @@ predict.plus <- function(object,lam,newx, ...) {
 coef.plus <- function(object,lam, ...){
   if (missing(lam)) {
     lam <- sort(object$lam.path, decreasing=TRUE)
-    cat("Warning message: ")
-    cat("no lam argument; object$lam.path used", "\n")
+    warning("Warning message: ")
+    warning("no lam argument; object$lam.path used", "\n")
   }
   else if (max(lam) < min(object$lam.path)) {
     lam <- sort(object$lam.path, decreasing=TRUE)
-    cat("Warning message: ")
-    cat("lam not reached by the plus path; x$lam.path used", "\n")
+    warning("Warning message: ")
+    warning("lam not reached by the plus path; x$lam.path used", "\n")
   }
   #cat("\n")
   tmp <- plus.hit.points(lam,object$lam.path)
@@ -289,8 +288,8 @@ plot.plus <- function(x, xvar=c("lam","step"), yvar=c("coef","newy","lam","dim",
   else yvar <- "coefficients"
   if (yvar != "newy") newx <- matrix(0,2,dim(x$x)[2])
   if ((yvar == "newy") & missing(newx)) {
-    cat("Warning message: ")
-    cat("no newx argument", "\n")
+    warning("Warning message: ")
+    warning("no newx argument", "\n")
     return()
   }
   if (missing(predictors)) predictors <- 1:(dim(x$x)[2])
@@ -624,21 +623,21 @@ plus.hit.points <- function (lam, lam.path) {
   if (is.null(lam) || !is.numeric(lam) || is.nan(sum(lam)))
   {
     lam <- sort(lam.path, decreasing = TRUE)
-    cat("Warning message: ")
-    cat("invalid lam; lam.path used\n")
+    warning("Warning message: ")
+    warning("invalid lam; lam.path used\n")
   }
   if (max(lam)< min(lam.path))
   {
     lam <- sort(lam.path, decreasing = TRUE)
-    cat("Warning message: ")
-    cat("lam not reached by the plus path; lam.path used\n")
+    warning("Warning message: ")
+    warning("lam not reached by the plus path; lam.path used\n")
   }
   lam <- mapply(function(x) min(x,max(lam.path)),lam)
   if (min(lam) < min(lam.path))
   {
     lam <- lam[lam>=min(lam.path)]
-    cat("Warning message: ")
-    cat("some lam not reached by the plus path and dropped\n")
+    warning("Warning message: ")
+    warning("some lam not reached by the plus path and dropped\n")
   }
   lam.lesser.path <- mapply(function(x) x<=lam.path,lam)
   lam.greater.path <- mapply(function(x) x>=lam.path,lam)
@@ -830,6 +829,7 @@ cumcp <- function(Y, X, delta) {
 #' \code{\link{grpreg}}
 #'
 #' @examples
+#' \donttest{
 #' library(grpreg)
 #' # Generate simulated data with 500 samples and normal error distribution
 #' dataset <- MTAFT_simdata(n = 500, err = "normal")
@@ -856,6 +856,7 @@ cumcp <- function(Y, X, delta) {
 #'     thre.num.Lj = length(thre.LJ)
 #'     thre.LJ
 #'     thre.num.Lj
+#' }
 #' }
 TSMCP <- function(Y, X, delta, c,penalty = "scad") {
 
