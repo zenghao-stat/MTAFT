@@ -105,4 +105,5 @@ result <- MTAFT_CV(Y, X, delta, Tq, algorithm, dist_min, ncps_max)
 
 ## Reference
 
-> Wan, C., Zeng, H., Zhong, W., et al. (2023) Data-driven estimation for multi-threshold accelerated failure time model. Working paper.
+> Wan, C., Zeng, H., Zhang, W., Zhong, W., & Zou, C. (2024). Data‐driven estimation for multithreshold accelerated failure time model. Scandinavian Journal of Statistics, sjos.12758. https://doi.org/10.1111/sjos.12758
+
